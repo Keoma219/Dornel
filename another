@@ -1,0 +1,45 @@
+#!/usr/bin/env python3
+import re
+import sys
+import operator
+import csv
+
+sys_users={}
+errors={}
+
+f = open("syslog.log")
+
+for line in f:
+    line=line.strip()
+    usrname=(re.search(r"\((.*)\)",line)).group(1)
+    msg=(re.search(r"(ERROR|INFO)",line)).group(1)
+    if (usrname not in sys_ users):
+        user_count = {'INFO': 0, 'ERROR': 0}
+        sys_users[usrname] = user_count
+    sys_users[usrname][msg]+=1
+
+    if msg=="ERROR":
+        err=(re.search(r"ERROR (.*) ",line)).group(1)
+        if (err not in errors):
+            errors[err]=0
+        errors[err]+=1
+f.close()
+
+errors = sorted(errors.items(), key = operator.itemgetter(1), re$
+sys_users = sorted(sys_user.items())
+
+f.close()
+errors.insert(0,('Error', 'Count'))
+
+f = open(errorfile, 'w')
+for error in errors:
+       a,b = error
+       f.write(str(a)+','+str(b)+'\n')
+f.close()
+
+f = open(userfile, 'w')
+f.write("Username,INFO,ERROR\n")
+for stats in sys_users:
+        a, b = stats
+        f.write(str(a)+','+str(b("INFO"))+','+str(b("ERROR"))+'\n'
+
