@@ -1,0 +1,17 @@
+my_dict = {}
+    my_contents = file_contents.split()
+    for word in my_contents:
+            str1="".join(ch for ch in word if ch.isalnum())
+            if str1.lower() not in uninteresting_words:
+                if str1.lower() not in my_dict:
+                    my_dict[str1.lower()]=1
+                else:
+                    my_dict[str1.lower()]+=1
+            else:
+                for letter in word:
+                    if letter in punctuations:
+                        letter.replace(punctuations,"")
+                if word not in my_dict.keys():
+                    my_dict[word]= 0
+                else:
+                    my_dict[word] += 1
